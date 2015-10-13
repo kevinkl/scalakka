@@ -1,8 +1,6 @@
 package gs.psa
 
 import java.net.HttpURLConnection
-import java.net.InetSocketAddress
-import java.net.Proxy
 import java.net.URL
 
 import scala.io.Source
@@ -16,20 +14,22 @@ import akka.actor.Props
  */
 class UrlActor extends Actor with ActorLogging {
     import UrlActor._
+    import context._
 
     def receive = {
-        case UrlActor.ScrapeUrl(url) =>
+        case UrlActor.ScrapeUrl(url) => 
             extractNames(url) foreach (println(_))
+//            parent ! extractNames(url)
     }
 
-    private def retrieveUrl(url: String): String = {
+    private def retrieveUrl(url: URL): String = {
         try {
 //            val proxy: Proxy =
 //                new Proxy(Proxy.Type.HTTP, new InetSocketAddress("{proxy_name}", { proxy_port }))
 //            val connection: HttpURLConnection =
-//                new URL(url).openConnection(proxy).asInstanceOf[HttpURLConnection]
+//                url.openConnection(proxy).asInstanceOf[HttpURLConnection]
             val connection: HttpURLConnection =
-                new URL(url).openConnection().asInstanceOf[HttpURLConnection]
+                url.openConnection().asInstanceOf[HttpURLConnection]
 
             connection.connect()
             log.info("Retrieving content of " + url)
@@ -43,7 +43,7 @@ class UrlActor extends Actor with ActorLogging {
         ""
     }
 
-    private def extractNames(source: String): Array[String] = {
+    private def extractNames(source: URL): Array[String] = {
         val cap = """[A-Z]{1}[a-z]+""".r
         retrieveUrl(source).split("""\W""").filter {
             x =>
@@ -57,5 +57,5 @@ class UrlActor extends Actor with ActorLogging {
 
 object UrlActor extends Serializable {
     val props = Props[UrlActor]
-    case class ScrapeUrl(url: String)
+    case class ScrapeUrl(url: URL)
 }
