@@ -13,6 +13,7 @@ project/boot/
 project/plugins/project/
 
 # Scala-IDE specific
+.cache-*
 .scala_dependencies
 .worksheet
 /bin/
