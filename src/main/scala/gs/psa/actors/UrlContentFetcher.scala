@@ -1,4 +1,4 @@
-package gs.psa
+package gs.psa.actors
 
 import java.net.HttpURLConnection
 import java.net.URL
@@ -8,12 +8,13 @@ import scala.io.Source
 import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.Props
+import akka.actor.actorRef2Scala
 
 /**
  * @author Sebastian Gerau
  */
-class UrlActor extends Actor with ActorLogging {
-  import UrlActor._
+class UrlContentFetcher extends Actor with ActorLogging {
+  import UrlContentFetcher._
   import context._
 
   def receive = {
@@ -55,7 +56,7 @@ class UrlActor extends Actor with ActorLogging {
   }
 }
 
-object UrlActor extends Serializable {
-  val props = Props[UrlActor]
+object UrlContentFetcher extends Serializable {
+  val props = Props[UrlContentFetcher]
   case class ScrapeUrl(url: URL)
 }

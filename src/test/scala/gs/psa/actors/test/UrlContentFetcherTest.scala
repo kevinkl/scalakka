@@ -1,21 +1,21 @@
-package gs.psa
+package gs.psa.actors.test
 
+import java.io.File
 import java.net.MalformedURLException
 import java.net.URL
+
 import org.scalatest.SpecLike
+
 import akka.actor.ActorSystem
 import akka.actor.actorRef2Scala
-import akka.testkit.TestKit
-import scala.concurrent.duration._
-import java.io.File
-import akka.actor.Props
 import akka.testkit.ImplicitSender
-import scala.reflect.ClassTag
+import akka.testkit.TestKit
+import gs.psa.actors.UrlContentFetcher
 
 /**
  * @author Sebastian Gerau
  */
-class UrlActorTest(_system: ActorSystem) extends TestKit(_system) with ImplicitSender 
+class UrlContentFetcherTest(_system: ActorSystem) extends TestKit(_system) with ImplicitSender 
   with SpecLike {
   
   def this() = this(ActorSystem("UrlActorTest"))
@@ -23,19 +23,23 @@ class UrlActorTest(_system: ActorSystem) extends TestKit(_system) with ImplicitS
   object `A UrlActor` {
     object `when processing an invalid URL` {
       def `should produce a MalformedURLException when invoked` {
-        val urlActor = system.actorOf(UrlActor.props, "urlActor")
+        val fetcher = system.actorOf(UrlContentFetcher.props, "urlActor")
+
         intercept[MalformedURLException] {
-          urlActor ! new URL("dud!")
+          fetcher ! new URL("dud!")
         }
       }
     }
 
     object `when processing a valid URL` {
       def `should produce an Array of string values each starting with a capital letter` {
-        val urlActor = system.actorOf(UrlActor.props, "testUrlActor")
+        val fetcher = system.actorOf(UrlContentFetcher.props, "testUrlActor")
         val url: URL = new File("src/test/resources/test.html").toURI().toURL()
-        urlActor ! url
+
+        fetcher ! url
+
         Thread.sleep(1000)
+
         val answer = Array("This")
         expectMsgType[Array[String]]
       }
