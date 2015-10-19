@@ -19,7 +19,7 @@ class UrlContentFetcher extends Actor with ActorLogging {
 
   def receive = {
     case url: URL => {
-      sender ! extractNames(url)
+      sender ! retrieveUrl(url)
     }
   }
 
@@ -38,21 +38,6 @@ class UrlContentFetcher extends Actor with ActorLogging {
     } catch {
       case e: Throwable => e.getStackTrace.mkString
     }
-  }
-
-  private def extractContent(source: String): String = {
-    ""
-  }
-
-  private def extractNames(source: URL): Array[String] = {
-    val cap = """[A-Z]{1}[a-z]+""".r
-    retrieveUrl(source).split("""\W""").filter {
-      x =>
-        x match {
-          case cap(_*) => true
-          case _ => false
-        }
-    }.distinct
   }
 }
 

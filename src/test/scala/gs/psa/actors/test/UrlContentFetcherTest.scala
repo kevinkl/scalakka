@@ -18,30 +18,29 @@ import gs.psa.actors.UrlContentFetcher
 class UrlContentFetcherTest(_system: ActorSystem) extends TestKit(_system) with ImplicitSender 
   with SpecLike {
   
-  def this() = this(ActorSystem("UrlActorTest"))
+  def this() = this(ActorSystem("UrlContentFetcherTest"))
   
-  object `A UrlActor` {
+  object `A UrlContentFetcher` {
     object `when processing an invalid URL` {
       def `should produce a MalformedURLException when invoked` {
-        val fetcher = system.actorOf(UrlContentFetcher.props, "urlActor")
+        val testFetcher = system.actorOf(UrlContentFetcher.props, "testFetcher0")
 
         intercept[MalformedURLException] {
-          fetcher ! new URL("dud!")
+          testFetcher ! new URL("dud!")
         }
       }
     }
 
     object `when processing a valid URL` {
-      def `should produce an Array of string values each starting with a capital letter` {
-        val fetcher = system.actorOf(UrlContentFetcher.props, "testUrlActor")
-        val url: URL = new File("src/test/resources/test.html").toURI().toURL()
+      def `should produce a String of the entire content of the given URL` {
+        val testFetcher = system.actorOf(UrlContentFetcher.props, "testFetcher1")
+        val testUrl: URL = new File("src/test/resources/test.html").toURI().toURL()
 
-        fetcher ! url
+        testFetcher ! testUrl
 
         Thread.sleep(1000)
 
-        val answer = Array("This")
-        expectMsgType[Array[String]]
+        expectMsgType[String]
       }
     }
   }

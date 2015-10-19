@@ -23,7 +23,7 @@ object Psa {
       case _ => {
         try {
           val url: URL = new URL(args(0))
-          fetcher ! UrlContentFetcher.ScrapeUrl(url)
+          fetcher ! url
         } catch {
           case e: MalformedURLException => e.getStackTrace().mkString
         }
