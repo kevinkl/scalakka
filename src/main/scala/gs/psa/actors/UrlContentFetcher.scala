@@ -18,8 +18,8 @@ class UrlContentFetcher extends Actor with ActorLogging {
   import context._
 
   def receive = {
-    case url: URL => {
-      sender ! retrieveUrl(url)
+    case scrapeUrl: ScrapeUrl => {
+      sender ! retrieveUrl(scrapeUrl.url)
     }
   }
 

@@ -18,8 +18,8 @@ class UrlContentFilter extends Actor with ActorLogging {
   import context._
 
   def receive = {
-    case content: String => {
-      sender ! extractNames(content)
+    case filterUrl: FilterContent => {
+      sender ! extractNames(filterUrl.content)
     }
   }
 
@@ -37,5 +37,5 @@ class UrlContentFilter extends Actor with ActorLogging {
 
 object UrlContentFilter extends Serializable {
   val props = Props[UrlContentFilter]
-  case class FilterUrl(content: String)
+  case class FilterContent(content: String)
 }
