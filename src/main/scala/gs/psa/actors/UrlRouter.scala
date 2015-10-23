@@ -3,6 +3,9 @@ package gs.psa.actors
 import java.net.MalformedURLException
 import java.net.URL
 
+import scala.concurrent.duration.Duration
+import scala.concurrent.duration.SECONDS
+
 import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.ActorSystem
@@ -24,23 +27,27 @@ class UrlRouter extends Actor with ActorLogging {
   private val urlContentFilter = system.actorOf(UrlContentFilter.props)
   private val locationFetcher = system.actorOf(LocationFetcher.props)
 
-  def receive = {
-    case initService: InitService => {
-      val args = initService.args
+  def init(args: Array[String]) {
+    args(0).length match {
+      case 0 => {
+        println("No valid URL specified. You must provide at least one valid URL for processing.")
+      }
+      case _ => {
+        try {
+          val urlArgs = new URL(args(0))
+          val url: ScrapeUrl = new ScrapeUrl(urlArgs)
 
-      args(0).length match {
-        case 0 => println("No valid URL specified. You must provide at least one valid URL for processing.")
-        case _ => {
-          try {
-            val urlArgs = new URL(args(0))
-            val url: ScrapeUrl = new ScrapeUrl(urlArgs)
-
-            self ! url
-          } catch {
-            case e: MalformedURLException => e.getStackTrace().mkString
-          }
+          self ! url
+        } catch {
+          case e: MalformedURLException => e.getStackTrace().mkString
         }
       }
+    }
+  }
+  
+  def receive = {
+    case params: InitService => {
+      init(params.args)
     }
     case scrapeUrl: ScrapeUrl => {
       urlContentFetcher ! scrapeUrl.url
@@ -50,6 +57,10 @@ class UrlRouter extends Actor with ActorLogging {
     }
     case locations: Locations => {
       locationFetcher ! locations.locals
+    }
+    case _ => {
+      system.shutdown()
+      system.awaitTermination(Duration(20, SECONDS))
     }
   }
 }

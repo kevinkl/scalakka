@@ -33,7 +33,7 @@ class UrlContentFetcherTest(_system: ActorSystem) extends TestKit(_system) with 
     object `when processing a valid URL` {
       def `should produce a String of the entire content of the given URL` {
         val testFetcher = system.actorOf(UrlContentFetcher.props, "testFetcher1")
-        val testFileUrl = new File("src/test/resources/test.html").toURI().toURL()
+        val testFileUrl = new File("src/test/resources/test.html").getURI.getURL.mkString
         val testScrapeUrl: ScrapeUrl = new ScrapeUrl(testFileUrl)
 
         testFetcher ! testScrapeUrl

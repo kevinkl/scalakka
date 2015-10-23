@@ -2,13 +2,12 @@ package gs.psa.actors
 
 import java.net.HttpURLConnection
 import java.net.URL
-
 import scala.io.Source
-
 import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.Props
 import akka.actor.actorRef2Scala
+import gs.psa.actors.LocationFetcher.Locations
 
 /**
  * @author Sebastian Gerau
@@ -19,7 +18,7 @@ class UrlContentFilter extends Actor with ActorLogging {
 
   def receive = {
     case filterUrl: FilterContent => {
-      sender ! extractNames(filterUrl.content)
+      sender ! Locations(extractNames(filterUrl.content))
     }
   }
 

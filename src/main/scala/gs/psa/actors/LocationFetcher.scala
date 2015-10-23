@@ -12,7 +12,7 @@ class LocationFetcher extends Actor with ActorLogging {
   import context._
 
   def receive = {
-    case _ => 
+    case _ => println
   }
 }
 
