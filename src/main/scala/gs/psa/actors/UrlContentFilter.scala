@@ -1,8 +1,5 @@
 package gs.psa.actors
 
-import java.net.HttpURLConnection
-import java.net.URL
-import scala.io.Source
 import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.Props
@@ -17,8 +14,8 @@ class UrlContentFilter extends Actor with ActorLogging {
   import context._
 
   def receive = {
-    case filterUrl: FilterContent => {
-      sender ! Locations(extractNames(filterUrl.content))
+    case filterUrl: String => {
+      sender ! Locations(extractNames(filterUrl))
     }
   }
 

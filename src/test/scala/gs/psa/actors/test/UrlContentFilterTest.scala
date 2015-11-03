@@ -24,13 +24,13 @@ class UrlContentFilterTest(_system: ActorSystem) extends TestKit(_system) with I
 
   object `A UrlContentFilter` {
     object `when processing content of a valid URL` {
-      def `should produce a Location object holding the filtered locations` {
+      def `should produce an Array of String values each starting with a capital letter` {
         val testFilter = system.actorOf(UrlContentFilter.props, "testFilter")
         val testFile = new File("src/test/resources/test.html")
         val testFileContent = Source.fromFile(testFile).getLines.mkString
         val testFilterContent: FilterContent = new FilterContent(testFileContent)
 
-        testFilter ! testFilterContent
+        testFilter ! testFilterContent.content
 
         Thread.sleep(1000)
 

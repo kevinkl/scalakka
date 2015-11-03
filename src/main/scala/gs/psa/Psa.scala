@@ -1,15 +1,11 @@
 package gs.psa
 
 import java.net.MalformedURLException
-import java.net.URL
-import scala.concurrent.duration.Duration
-import scala.concurrent.duration.SECONDS
+
 import akka.actor.ActorSystem
 import akka.actor.actorRef2Scala
-import gs.psa.actors.UrlContentFetcher
-import gs.psa.actors.UrlContentFetcher.ScrapeUrl
-import gs.psa.actors.UrlRouter.InitService
 import gs.psa.actors.UrlRouter
+import gs.psa.actors.UrlRouter.InitService
 
 /**
  * @author Sebastian Gerau

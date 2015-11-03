@@ -2,7 +2,9 @@ package gs.psa.actors
 
 import java.net.HttpURLConnection
 import java.net.URL
+
 import scala.io.Source
+
 import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.Props
@@ -17,8 +19,8 @@ class UrlContentFetcher extends Actor with ActorLogging {
   import context._
 
   def receive = {
-    case scrapeUrl: ScrapeUrl => {
-      sender ! FilterContent(retrieveUrl(scrapeUrl.url))
+    case scrapeUrl: URL => {
+      sender ! FilterContent(retrieveUrl(scrapeUrl))
     }
   }
 
