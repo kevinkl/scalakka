@@ -1,17 +1,14 @@
 package gs.psa.actors.test
 
-import java.io.File
-
-import scala.io.Source
-
 import org.scalatest.SpecLike
 
 import akka.actor.ActorSystem
-import akka.actor.actorRef2Scala
 import akka.testkit.ImplicitSender
 import akka.testkit.TestKit
-import gs.psa.actors.LocationFetcher
 
+/**
+ * @author Sebastian Gerau
+ */
 class LocationFetcherTest(_system: ActorSystem) extends TestKit(_system) with ImplicitSender 
   with SpecLike {
 
