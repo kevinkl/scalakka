@@ -14,8 +14,8 @@ class UrlContentFilter extends Actor with ActorLogging {
   import context._
 
   def receive = {
-    case filterUrl: String => {
-      sender ! Locations(extractNames(filterUrl))
+    case filterUrl: FilterContent => {
+      sender ! Locations(extractNames(filterUrl.content))
     }
   }
 

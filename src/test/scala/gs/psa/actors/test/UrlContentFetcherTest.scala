@@ -39,7 +39,7 @@ class UrlContentFetcherTest(_system: ActorSystem) extends TestKit(_system) with 
         val testFileUrl = new File("src/test/resources/test.html").toURI.toURL
         val testScrapeUrl: ScrapeUrl = new ScrapeUrl(testFileUrl)
 
-        testFetcher ! testScrapeUrl.url
+        testFetcher ! testScrapeUrl
 
         Thread.sleep(1000)
 

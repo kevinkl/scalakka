@@ -45,13 +45,13 @@ class UrlRouter extends Actor with ActorLogging {
       init(params.args)
     }
     case scrapeUrl: ScrapeUrl => {
-      urlContentFetcher ! scrapeUrl.url
+      urlContentFetcher ! scrapeUrl
     }
     case filterContent: FilterContent => {
-      urlContentFilter ! filterContent.content
+      urlContentFilter ! filterContent
     }
     case locations: Locations => {
-      locationFetcher ! locations.locals
+      locationFetcher ! locations
     }
     case "shutdown" => {
       context.system.shutdown()

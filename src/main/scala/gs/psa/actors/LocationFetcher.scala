@@ -13,8 +13,8 @@ class LocationFetcher extends Actor with ActorLogging {
   import context._
 
   def receive = {
-    case locations: Array[String] => {
-      locations foreach println
+    case locations: Locations => {
+      locations.locals foreach println
       sender ! "shutdown"
     }
   }

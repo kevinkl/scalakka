@@ -30,7 +30,7 @@ class UrlContentFilterTest(_system: ActorSystem) extends TestKit(_system) with I
         val testFileContent = Source.fromFile(testFile).getLines.mkString
         val testFilterContent: FilterContent = new FilterContent(testFileContent)
 
-        testFilter ! testFilterContent.content
+        testFilter ! testFilterContent
 
         Thread.sleep(1000)
 
