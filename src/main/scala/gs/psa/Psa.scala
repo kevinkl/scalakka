@@ -12,7 +12,7 @@ import gs.psa.actors.UrlRouter.InitService
  */
 object Psa {
   def main(args: Array[String]) {
-    val system = ActorSystem("Psa")
+    val system = ActorSystem("psa")
     val router = system.actorOf(UrlRouter.props)
 
     args.length match {
