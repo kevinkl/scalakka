@@ -7,20 +7,15 @@ import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.Props
 import akka.actor.actorRef2Scala
-import gs.psa.actors.LocationFetcher.Locations
 import gs.psa.actors.UrlContentFetcher.ScrapeUrl
-import gs.psa.actors.UrlContentFilter.FilterContent
+import gs.psa.actors.UrlRouter.InitService
 
 /**
  * @author Sebastian Gerau
  */
 class UrlRouter extends Actor with ActorLogging {
-  import UrlRouter._
-  import context._
-
-  private val urlContentFetcher = context.actorOf(UrlContentFetcher.props)
-  private val urlContentFilter = context.actorOf(UrlContentFilter.props)
-  private val locationFetcher = context.actorOf(LocationFetcher.props)
+//  import UrlRouter._
+//  import context._
 
   def init(args: Array[String]) {
     args(0).length match {
@@ -44,15 +39,15 @@ class UrlRouter extends Actor with ActorLogging {
     case params: InitService => {
       init(params.args)
     }
-    case scrapeUrl: ScrapeUrl => {
-      urlContentFetcher ! scrapeUrl
-    }
-    case filterContent: FilterContent => {
-      urlContentFilter ! filterContent
-    }
-    case locations: Locations => {
-      locationFetcher ! locations
-    }
+//    case scrapeUrl: ScrapeUrl => {
+//      urlContentFetcher ! scrapeUrl
+//    }
+//    case filterContent: FilterContent => {
+//      urlContentFilter ! filterContent
+//    }
+//    case locations: Locations => {
+//      locationFetcher ! locations
+//    }
     case "shutdown" => {
       context.system.shutdown()
     }

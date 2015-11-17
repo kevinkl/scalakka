@@ -7,6 +7,6 @@ import akka.actor.ActorSystem
  */
 trait PsaCore {
 
-  implicit def psaSystem: ActorSystem
+  implicit def system: ActorSystem
 
 }

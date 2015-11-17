@@ -1,7 +1,8 @@
 package gs.psa.core
 
-import akka.actor.{Props, ActorSystem}
-import gs.psa.actors.UrlRouter
+import akka.actor.Props
+import gs.psa.actors.{UrlContentFetcher, UrlContentFilter, UrlRouter}
+import gs.psa.actors.LocationFetcher
 
 /**
  * @author Sebastian Gerau
@@ -9,6 +10,9 @@ import gs.psa.actors.UrlRouter
 trait PsaCoreActors {
   psaCore: PsaCore =>
 
-  val urlRouter = psaSystem.actorOf(Props[UrlRouter])
+  val urlRouter = system.actorOf(Props[UrlRouter])
+  val urlContentFetcher = system.actorOf(Props[UrlContentFetcher])
+  val urlContentFilter = system.actorOf(Props[UrlContentFilter])
+  val locationFetcher = system.actorOf(Props[LocationFetcher])
 
 }

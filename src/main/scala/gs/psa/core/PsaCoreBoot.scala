@@ -7,7 +7,7 @@ import akka.actor.ActorSystem
  */
 trait PsaCoreBoot extends PsaCore {
 
-  implicit lazy val psaSystem = ActorSystem("Psa")
-  sys.addShutdownHook(psaSystem.shutdown())
+  implicit lazy val system = ActorSystem("Psa")
+  sys.addShutdownHook(system.shutdown())
 
 }
