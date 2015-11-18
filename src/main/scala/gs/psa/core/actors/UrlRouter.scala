@@ -1,21 +1,22 @@
-package gs.psa.actors
+package gs.psa.core.actors
 
 import java.net.MalformedURLException
 import java.net.URL
 
 import akka.actor.Actor
 import akka.actor.ActorLogging
-import akka.actor.Props
 import akka.actor.actorRef2Scala
-import gs.psa.actors.UrlContentFetcher.ScrapeUrl
-import gs.psa.actors.UrlRouter.InitService
+import gs.psa.core.actors.UrlContentFetcher.ScrapeUrl
+import gs.psa.core.actors.UrlRouter.InitService
+import gs.psa.core.PsaCoreActors
+import gs.psa.core.PsaCoreBoot
+import gs.psa.core.actors.LocationFetcher.Locations
+import gs.psa.core.actors.UrlContentFilter.FilterContent
 
 /**
  * @author Sebastian Gerau
  */
-class UrlRouter extends Actor with ActorLogging {
-//  import UrlRouter._
-//  import context._
+class UrlRouter extends Actor with ActorLogging with PsaCoreBoot with PsaCoreActors {
 
   def init(args: Array[String]) {
     args(0).length match {
@@ -36,25 +37,14 @@ class UrlRouter extends Actor with ActorLogging {
   }
   
   def receive = {
-    case params: InitService => {
-      init(params.args)
-    }
-//    case scrapeUrl: ScrapeUrl => {
-//      urlContentFetcher ! scrapeUrl
-//    }
-//    case filterContent: FilterContent => {
-//      urlContentFilter ! filterContent
-//    }
-//    case locations: Locations => {
-//      locationFetcher ! locations
-//    }
-    case "shutdown" => {
-      context.system.shutdown()
-    }
+    case params: InitService => init(params.args)
+    case scrapeUrl: ScrapeUrl => urlContentFetcher ! scrapeUrl
+    case filterContent: FilterContent => urlContentFilter ! filterContent
+    case locations: Locations => locationFetcher ! locations
+    case "shutdown" => sys.exit()
   }
 }
 
 object UrlRouter extends Serializable {
-  val props = Props[UrlRouter]
   case class InitService(args: Array[String])
 }

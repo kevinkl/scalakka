@@ -1,17 +1,15 @@
-package gs.psa.actors
+package gs.psa.core.actors
 
 import akka.actor.Actor
 import akka.actor.ActorLogging
-import akka.actor.Props
 import akka.actor.actorRef2Scala
-import gs.psa.actors.LocationFetcher.Locations
+import gs.psa.core.actors.LocationFetcher.Locations
+import gs.psa.core.actors.UrlContentFilter.FilterContent
 
 /**
  * @author Sebastian Gerau
  */
 class UrlContentFilter extends Actor with ActorLogging {
-  import UrlContentFilter._
-  import context._
 
   def receive = {
     case filterUrl: FilterContent => {
@@ -32,6 +30,5 @@ class UrlContentFilter extends Actor with ActorLogging {
 }
 
 object UrlContentFilter extends Serializable {
-  val props = Props[UrlContentFilter]
   case class FilterContent(content: String)
 }

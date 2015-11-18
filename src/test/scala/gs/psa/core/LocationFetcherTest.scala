@@ -1,9 +1,9 @@
-package gs.psa.core
+package gs.psa.core.actors
 
 import org.scalatest.SpecLike
-
 import akka.actor.ActorSystem
 import akka.testkit.{ImplicitSender, TestKit}
+import gs.psa.core.{PsaCore, PsaCoreActors}
 
 /**
  * @author Sebastian Gerau
@@ -12,7 +12,7 @@ class LocationFetcherTest extends TestKit(ActorSystem()) with SpecLike with PsaC
 with PsaCore with ImplicitSender {
   import LocationFetcher._
 
-  object `LocationFetcher` {
+  object `A LocationFetcher` {
     object `when processing a list of potential locations` {
       def `should produce an Array of String values with only true locations` {
         

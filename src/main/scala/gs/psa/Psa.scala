@@ -1,10 +1,9 @@
 package gs.psa
 
 import java.net.MalformedURLException
-
 import akka.actor.actorRef2Scala
-import gs.psa.actors.UrlRouter.InitService
 import gs.psa.core.{PsaCoreActors, PsaCoreBoot}
+import gs.psa.core.actors.UrlRouter.InitService
 
 /**
  * @author Sebastian Gerau

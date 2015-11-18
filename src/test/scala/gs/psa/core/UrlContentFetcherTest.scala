@@ -1,4 +1,4 @@
-package gs.psa.core
+package gs.psa.core.actors
 
 import java.io.File
 import java.net.MalformedURLException
@@ -8,8 +8,9 @@ import org.scalatest.SpecLike
 
 import akka.actor.{ActorSystem, actorRef2Scala}
 import akka.testkit.{ImplicitSender, TestKit}
-import gs.psa.actors.UrlContentFetcher.ScrapeUrl
-import gs.psa.actors.UrlContentFilter.FilterContent
+import gs.psa.core.{PsaCore, PsaCoreActors}
+import gs.psa.core.actors.UrlContentFetcher.ScrapeUrl
+import gs.psa.core.actors.UrlContentFilter.FilterContent
 
 /**
  * @author Sebastian Gerau
@@ -18,7 +19,7 @@ class UrlContentFetcherTest extends TestKit(ActorSystem()) with SpecLike with Ps
 with PsaCore with ImplicitSender {
   import UrlContentFetcher._
 
-  object `UrlContentFetcher` {
+  object `A UrlContentFetcher` {
     object `when processing an invalid URL` {
       def `should produce a MalformedURLException when invoked` {
         intercept[MalformedURLException] {

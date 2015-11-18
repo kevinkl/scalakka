@@ -1,8 +1,8 @@
 package gs.psa.core
 
 import akka.actor.Props
-import gs.psa.actors.{UrlContentFetcher, UrlContentFilter, UrlRouter}
-import gs.psa.actors.LocationFetcher
+import gs.psa.core.actors.{UrlContentFetcher, UrlContentFilter, UrlRouter}
+import gs.psa.core.actors.LocationFetcher
 
 /**
  * @author Sebastian Gerau
