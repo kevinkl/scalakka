@@ -6,18 +6,18 @@ import java.net.URL
 import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.actorRef2Scala
-import gs.psa.core.actors.UrlContentFetcher.ScrapeUrl
-import gs.psa.core.actors.UrlRouter.InitService
 import gs.psa.core.PsaCoreActors
 import gs.psa.core.PsaCoreBoot
-import gs.psa.core.actors.LocationFetcher.Locations
-import gs.psa.core.actors.UrlContentFilter.FilterContent
 
 /**
  * @author Sebastian Gerau
  */
 class UrlRouter extends Actor with ActorLogging with PsaCoreBoot with PsaCoreActors {
-
+  import UrlRouter._
+  import UrlContentFetcher._
+  import UrlContentFilter._
+  import LocationFetcher._
+  
   def init(args: Array[String]) {
     args(0).length match {
       case 0 => {

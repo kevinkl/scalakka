@@ -4,13 +4,13 @@ import akka.actor.Actor
 import akka.actor.ActorLogging
 import akka.actor.actorRef2Scala
 import gs.psa.core.actors.LocationFetcher.Locations
-import gs.psa.core.actors.UrlContentFilter.FilterContent
 
 /**
  * @author Sebastian Gerau
  */
 class UrlContentFilter extends Actor with ActorLogging {
-
+  import UrlContentFilter._
+  
   def receive = {
     case filterUrl: FilterContent => {
       sender ! Locations(extractNames(filterUrl.content))

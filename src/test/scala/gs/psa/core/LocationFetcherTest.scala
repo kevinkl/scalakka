@@ -1,9 +1,12 @@
 package gs.psa.core.actors
 
 import org.scalatest.SpecLike
+
 import akka.actor.ActorSystem
-import akka.testkit.{ImplicitSender, TestKit}
-import gs.psa.core.{PsaCore, PsaCoreActors}
+import akka.testkit.ImplicitSender
+import akka.testkit.TestKit
+import gs.psa.core.PsaCore
+import gs.psa.core.PsaCoreActors
 
 /**
  * @author Sebastian Gerau
@@ -19,4 +22,5 @@ with PsaCore with ImplicitSender {
       }
     }
   }
+
 }

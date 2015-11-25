@@ -6,10 +6,12 @@ import java.net.URL
 
 import org.scalatest.SpecLike
 
-import akka.actor.{ActorSystem, actorRef2Scala}
-import akka.testkit.{ImplicitSender, TestKit}
-import gs.psa.core.{PsaCore, PsaCoreActors}
-import gs.psa.core.actors.UrlContentFetcher.ScrapeUrl
+import akka.actor.ActorSystem
+import akka.actor.actorRef2Scala
+import akka.testkit.ImplicitSender
+import akka.testkit.TestKit
+import gs.psa.core.PsaCore
+import gs.psa.core.PsaCoreActors
 import gs.psa.core.actors.UrlContentFilter.FilterContent
 
 /**
