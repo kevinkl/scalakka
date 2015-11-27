@@ -1,4 +1,4 @@
-name := """psa"""
+name := """scalakka"""
 
 version := "0.1"
 

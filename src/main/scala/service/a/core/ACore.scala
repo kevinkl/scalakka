@@ -1,12 +1,12 @@
-package gs.psa.core
+package service.a.core
 
 import akka.actor.ActorSystem
 
 /**
  * @author Sebastian Gerau
  */
-trait PsaCore {
-
+trait ACore {
+  
   implicit def system: ActorSystem
-
+  
 }

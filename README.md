@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gsebast/psa.svg?branch=master)](https://travis-ci.org/gsebast/psa)
+[![Build Status](https://travis-ci.org/gsebast/scalakka.svg?branch=master)](https://travis-ci.org/gsebast/scalakka)
 
-# psa
-Playing with Scala Actors
+# scalakka
+Scala and Akka sandbox.
