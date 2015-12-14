@@ -1,10 +1,11 @@
 package service.a.app
 
-import akka.testkit.TestKit
 import org.scalatest.SpecLike
-import akka.actor.ActorSystem
 
-class AConfigTestSuite extends TestKit(ActorSystem()) with SpecLike with Config {
+import akka.actor.ActorSystem
+import akka.testkit.TestKit
+
+class AConfigTestSuite extends TestKit(ActorSystem()) with SpecLike with AConfig {
 
   object `A Config` {
     object `when initialized` {

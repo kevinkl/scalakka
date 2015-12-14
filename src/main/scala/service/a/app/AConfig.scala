@@ -2,7 +2,7 @@ package service.a.app
 
 import com.typesafe.config.ConfigFactory
 
-trait Config {
+trait AConfig {
   
   private val aConfig = ConfigFactory.load("applicationA.conf")
 
