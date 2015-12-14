@@ -4,13 +4,15 @@ import com.typesafe.config.ConfigFactory
 
 trait Config {
   
-  private val config = ConfigFactory.load()
+  private val aConfig = ConfigFactory.load("applicationA.conf")
 
-  private val akkaConf = config.getConfig("akka")
-  val akkaLogLevel = akkaConf.getString("loglevel")
+  private val akka = aConfig.getConfig("serviceA.akka")
+  val logLevel = akka.getString("loglevel")
+  val stdOutLogLevel = akka.getString("stdout-loglevel")
+  val logConfigOnStart = akka.getString("log-config-on-start")
   
-  private val httpConf = config.getConfig("http")
-  val httpInterface = httpConf.getString("interface")
-  val httpPort = httpConf.getString("port")
+  private val http = aConfig.getConfig("serviceA.http")
+  val interface = http.getString("interface")
+  val port = http.getString("port")
   
 }
