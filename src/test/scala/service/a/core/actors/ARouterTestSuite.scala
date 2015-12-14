@@ -12,7 +12,7 @@ class ARouterTestSuite extends TestKit(ActorSystem()) with SpecLike with Implici
   object `An ARouter` {
     object `when being send a random message` {
       def `replies with a "Not yet implemented" message` {
-        val ARouter = system.actorOf(Props[ARouter])
+        val aRouter = system.actorOf(Props[ARouter])
         aRouter ! "Find the answer to everything"
         expectMsg("Not yet implemented")
       }
