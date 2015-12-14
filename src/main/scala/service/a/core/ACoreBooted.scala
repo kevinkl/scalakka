@@ -7,7 +7,7 @@ import akka.actor.ActorSystem
  */
 trait ACoreBooted extends ACore {
   
-  implicit lazy val system = ActorSystem()
+  implicit lazy val system = ActorSystem("AService")
   sys.addShutdownHook(system.terminate())
   
 }
