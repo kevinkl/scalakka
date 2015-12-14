@@ -9,7 +9,7 @@ class AConfigTestSuite extends TestKit(ActorSystem()) with SpecLike with Config 
   object `A Config` {
     object `when initialized` {
       def `should have attribute "akka.loglevel" set` {
-        assert(loglever.nonEmpty)
+        assert(logLevel.nonEmpty)
       }
       
       def `should have attribute "akka.stdout-loglevel" set` {
