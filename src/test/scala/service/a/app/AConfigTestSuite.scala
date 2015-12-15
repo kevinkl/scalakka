@@ -25,8 +25,16 @@ class AConfigTestSuite extends TestKit(ActorSystem()) with SpecLike with AConfig
         assert(interface.nonEmpty)
       }
       
+      def `should have a default "http.interface" value of "0.0.0.0"` {
+        assert(interface.equals("0.0.0.0"))
+      }
+      
       def `should have attribute "akka.port" set` {
         assert(port.nonEmpty)
+      }
+      
+      def `should have a default "http.port" value of "11011"` {
+        assert(port.equals("11011"))
       }
     }
   }
