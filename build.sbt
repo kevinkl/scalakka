@@ -8,6 +8,7 @@ libraryDependencies ++= {
   val akkaVersion = "2.4.1"
   val akkaExpVersion = "2.0-M2"
   val scalaTestVersion = "2.2.4"
+  val kamonVersion = "0.5.2"
   
   Seq(
     "com.typesafe.akka" % "akka-actor_2.11" % akkaVersion,
@@ -15,7 +16,9 @@ libraryDependencies ++= {
     "com.typesafe.akka" % "akka-http-core-experimental_2.11" % akkaExpVersion,
     "com.typesafe.akka" % "akka-http-experimental_2.11" % akkaExpVersion,
     "com.typesafe.akka" % "akka-testkit_2.11" % akkaVersion % "test",
-    "org.scalatest" % "scalatest_2.11" % scalaTestVersion % "test"
+    "org.scalatest" % "scalatest_2.11" % scalaTestVersion % "test",
+    "io.kamon" % "kamon-core_2.11" % kamonVersion,
+    "io.kamon" % "kamon-statsd_2.11" % kamonVersion
   )
 }
 
