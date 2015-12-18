@@ -20,13 +20,21 @@ object AService extends App with ACoreBooted with AConfig {
   protected implicit val executor: ExecutionContext = system.dispatcher
   protected implicit val materializer: ActorMaterializer = ActorMaterializer()
 
-  val route = path("hello") {
-    get {
-      complete {
-        <h1>Say hello to akka-http</h1>
+  val route = 
+    path("hello") {
+      get {
+        complete {
+          <h1>Say hello to akka-http</h1>
+        }
+      }
+    } ~
+    path("dude") {
+      get {
+        complete {
+          <h1>Say hello to dude</h1>
+        }
       }
     }
-  }
   
   val bindingFuture = Http().bindAndHandle(route, "localhost", port.toInt)
   
