@@ -13,15 +13,15 @@ libraryDependencies ++= {
   val kamonVersion = "0.5.2"
   
   Seq(
-    "com.typesafe.akka" %% "akka-actor" % akkaVersion,
-    "com.typesafe.akka" %% "akka-http-core-experimental" % akkaExpVersion,
-    "com.typesafe.akka" %% "akka-http-experimental" % akkaExpVersion,
-    "com.typesafe.akka" %% "akka-http-xml-experimental" % akkaExpVersion,
-    "com.typesafe.akka" %% "akka-stream-experimental" % akkaExpVersion,
-    "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",
-    "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
-    "io.kamon" %% "kamon-core" % kamonVersion,
-    "io.kamon" %% "kamon-statsd" % kamonVersion
+    "com.typesafe.akka" %% "akka-actor" % akkaVersion withSources(),
+    "com.typesafe.akka" %% "akka-http-core-experimental" % akkaExpVersion withSources(),
+    "com.typesafe.akka" %% "akka-http-experimental" % akkaExpVersion withSources(),
+    "com.typesafe.akka" %% "akka-http-xml-experimental" % akkaExpVersion withSources(),
+    "com.typesafe.akka" %% "akka-stream-experimental" % akkaExpVersion withSources(),
+    "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test" withSources(),
+    "org.scalatest" %% "scalatest" % scalaTestVersion % "test" withSources(),
+    "io.kamon" %% "kamon-core" % kamonVersion withSources(),
+    "io.kamon" %% "kamon-statsd" % kamonVersion withSources()
   )
 }
 
