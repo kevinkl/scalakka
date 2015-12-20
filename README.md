@@ -6,12 +6,18 @@ Scala and Akka sandbox.
 # Usage
 
 * Compile and Test
+```shell
     $ sbt clean compile test
+```
 
 * Stage Java Application
+```shell
     $ sbt stage
+```
 
 * Run staged application
   1. change to folder /target/universal/stage/bin
   2. run
+```shell
       $ scalakka
+```
