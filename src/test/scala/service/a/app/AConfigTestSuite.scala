@@ -21,6 +21,10 @@ class AConfigTestSuite extends TestKit(ActorSystem()) with SpecLike with AConfig
         assert(stdOutLogLevel.nonEmpty)
       }
       
+      def `should have attribute "akka.stdout-loglevel" set to "OFF" per default` {
+        assert(stdOutLogLevel.equals("OFF"))
+      }
+      
       def `should have attribute "akka.log-config-on-start" set` {
         assert(logConfigOnStart.nonEmpty)
       }
