@@ -29,6 +29,10 @@ class AConfigTestSuite extends TestKit(ActorSystem()) with SpecLike with AConfig
         assert(logConfigOnStart.nonEmpty)
       }
       
+      def `should have attribute "akka.log-config-on-start" set to "OFF" per default` {
+        assert(logConfigOnStart.equals("off"))
+      }
+
       def `should have attribute "akka.interface" set` {
         assert(interface.nonEmpty)
       }
