@@ -5,12 +5,12 @@ Scala and Akka sandbox.
 
 # Usage
 
-* Compile and Test
+* Compiling and testing
 ```shell
     $ sbt clean compile test
 ```
 
-* Stage Java Application
+* Staging the application
 ```shell
     $ sbt stage
 ```
